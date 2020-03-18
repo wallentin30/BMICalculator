@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>BMI Calculator</title>
+    <style media="screen">
+        body {
+          text-align: center;
+          margin: 0;
+          padding: 0;
+        }
+        header {
+          background-color: aquamarine;
+          padding: 20px;
+          margin-bottom: 30px;;
+        }
+        h1 {
+          color: #555555;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        #fullName {
+          width: 150px;;
+        }
+        input {
+          width: 50px;
+          margin: 20px;
+          padding: 8px;
+          font-weight: bold;
+          text-align: center;
+        }
+        form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+         
+        }
+       button {
+         margin: 5px;;
+       }
+       label {
+         font-weight: bold;
+       }
+       #fullResult {
+         width: 500px;
+         margin: 10px auto;
+         padding: 30px;
+         border: 2px solid #333333;
+       }
+       footer {
+        background-color: aquamarine;
+          padding: 20px;
+          height: 200px;
+          margin-top: 50px;
+          display: fixed;
+       }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>BMI Calculator</h1>
+    </header>
+    
+    <form>
+          <label for="fullName">Your FULL Name: </label>
+          <input type="text" name="fullName" id="fullName" />
+          <label for="gender">Gender: </label>
+          <input type="text" name="gender" id="gender" />
+          <label for="weight">Weight (kg): </label>
+          <input type="number"name="weight" id="weight" />
+          <label for="height">Height (m): </label>
+          <input type="number"name="height" id="height" />
+          <button type="button" onclick="BMICalculator()" name="button">Calculate!</button>
+          <button type="reset" name="button">Reset</button>
+    </form>
+      <section>
+          <h3>Your result will appear bellow:</h3>
+          <p id="fullResult"></p>
+      </section>
+    </main>
+    <footer>
+        2020 Front-End Course.Created By Cojocaru Valentin
+    </footer>
+      <script type="text/javascript">
+          function BMICalculator() {
+            
+            let fullName, gender, weight, height, errorMessage, calculateBMI, fullResult;
+
+                fullName = document.getElementById("fullName").value;
+                gender = document.getElementById("gender").value;
+                height = document.getElementById("height").value;
+                weight = document.getElementById("weight").value;
+                calculateBMI = (weight / (height * height)).toFixed(2);
+                errorMessage = "Please fill the inputs Above! Thank you!";
+
+                          
+
+                if (calculateBMI <= 18.5) {
+                  calculateBMI += " | Under Weight";
+                } else if (calculateBMI >= 18.5 && calculateBMI <= 25.0) {
+                  calculateBMI += "| Normal";
+                } else if (calculateBMI >= 25.0 && calculateBMI <= 30) {
+                  calculateBMI += " | Over Weight";
+                } else {
+                  calculateBMI += " | Obese";
+                }
+
+                fullResult = document.getElementById('fullResult');
+
+                if(fullName,gender,height,weight === "") {
+                    fullResult.style.color = "#ff3377";
+                    fullResult.style.fontWeight = "bold";
+                    fullResult.style.fontSize = "20px";
+                    fullResult.innerHTML = errorMessage;
+                }else {      
+                    fullResult.style.color = "#000000";
+                    fullResult.style.fontWeight = "bold";
+                    fullResult.innerHTML = `${fullName} | ${gender} | BMI: ${calculateBMI}`;
+                }
+          }
+      </script>
+  </body>
+</html>
